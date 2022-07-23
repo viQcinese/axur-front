@@ -12,3 +12,7 @@ export function addSearchItem(item: SearchItem) {
   searchItems.unshift(item);
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(searchItems));
 }
+
+export function removeSearchItems() {
+  localStorage.removeItem(LOCAL_STORAGE_KEY);
+}

@@ -9,7 +9,11 @@ import { GlobalStyle } from "../../styles/global";
 import { theme } from "../../styles/theme";
 import { PostSearchData, PostSearchPayload } from "../../types/api";
 import { SearchItem } from "../../types/searchItem";
-import { addSearchItem, getSearchItems } from "../../utils/localStorage";
+import {
+  addSearchItem,
+  getSearchItems,
+  removeSearchItems,
+} from "../../utils/localStorage";
 import { validateSearch } from "../../utils/validate";
 import {
   SearchActionContainer,
@@ -58,6 +62,7 @@ export function HomePage() {
   function cleanHistory() {
     setSearches([]);
     setSelectedSearch(undefined);
+    removeSearchItems();
   }
 
   const validationError = formState.errors.keyword?.message;
