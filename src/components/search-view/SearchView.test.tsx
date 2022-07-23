@@ -6,6 +6,22 @@ jest.mock("../../hooks/useGet.ts", () => () => mockedData);
 let mockedData = {};
 
 describe("<SearchItem /> test suite", () => {
+  it("renders error state", () => {
+    mockedData = {
+      data: undefined,
+      loading: false,
+      error: Error(),
+    };
+
+    render(<SearchView search={{ id: "id", keyword: "keyword" }} />);
+
+    const errorText = screen.getByText(
+      /Oops! Something went wrong with this search. Please, try again!/i
+    );
+
+    expect(errorText).toBeInTheDocument();
+  });
+
   it("renders loading state", () => {
     mockedData = {
       data: undefined,

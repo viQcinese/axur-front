@@ -11,6 +11,8 @@ import {
   LoadingContainer,
   Spinner,
   DataContainer,
+  ErrorContainer,
+  ErrorIcon,
 } from "./SearchView.styles";
 
 type SearchViewProps = {
@@ -20,7 +22,7 @@ type SearchViewProps = {
 export function SearchView(props: SearchViewProps) {
   const { keyword, id } = props.search;
 
-  const { data, loading } = useGet<GetSearch>(`/crawl/${id}`);
+  const { data, loading, error } = useGet<GetSearch>(`/crawl/${id}`);
   const isEmpty = data?.urls.length === 0;
   const hasData = !!data && data.urls.length > 0;
 
@@ -32,7 +34,14 @@ export function SearchView(props: SearchViewProps) {
           <Spinner size="2rem" color="#888" data-testid="active-search" />
         ) : null}
       </HeadContainer>
-      {loading ? (
+      {error ? (
+        <ErrorContainer>
+          <ErrorIcon />
+          <span>
+            Oops! Something went wrong with this search. Please, try again!
+          </span>
+        </ErrorContainer>
+      ) : loading ? (
         <LoadingContainer>
           <Spinner />
         </LoadingContainer>

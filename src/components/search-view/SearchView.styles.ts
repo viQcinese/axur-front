@@ -1,4 +1,8 @@
-import { AiOutlineFolderOpen, AiOutlineLoading3Quarters } from "react-icons/ai";
+import {
+  AiOutlineFolderOpen,
+  AiOutlineLoading3Quarters,
+  AiOutlineWarning,
+} from "react-icons/ai";
 import styled, { keyframes } from "styled-components";
 
 export const Container = styled.div`
@@ -47,6 +51,20 @@ export const EmptyContainer = styled.div`
   }
 `;
 
+export const ErrorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  text-align: center;
+
+  span {
+    margin-top: 8px;
+    color: #666;
+    max-width: 320px;
+  }
+`;
+
 export const LoadingContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,6 +86,11 @@ export const EmptyIcon = styled(AiOutlineFolderOpen).attrs({
   size: "5.4rem",
   color: "#ddd",
 })``;
+
+export const ErrorIcon = styled(AiOutlineWarning).attrs((props) => ({
+  size: "5.4rem",
+  color: props.theme.colors.red.main,
+}))``;
 
 export const Spinner = styled(AiOutlineLoading3Quarters).attrs((props) => ({
   size: props.size || "4.2rem",
