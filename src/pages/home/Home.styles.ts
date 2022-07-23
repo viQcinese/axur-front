@@ -111,7 +111,7 @@ const rotate = keyframes`
 `;
 
 export const Spinner = styled(AiOutlineLoading3Quarters).attrs({
-  size: "2.4rem",
+  size: "2rem",
 })`
   animation: ${rotate} 0.6s linear infinite;
 `;

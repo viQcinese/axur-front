@@ -55,13 +55,19 @@ export function HomePage() {
     }
   }
 
+  function cleanHistory() {
+    setSearches([]);
+  }
+
   const validationError = formState.errors.keyword?.message;
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       {searches.length > 0 ? (
-        <CleanHistoryButton>Clean History</CleanHistoryButton>
+        <CleanHistoryButton onClick={cleanHistory}>
+          Clean History
+        </CleanHistoryButton>
       ) : null}
       <Layout isSearchOpen={!!selectedSearch}>
         <SearchActionContainer>
