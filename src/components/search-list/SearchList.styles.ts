@@ -29,13 +29,13 @@ export const Container = styled.ul`
     border-radius: 50px;
   }
 
-  li:hover button {
+  li button:hover {
     cursor: pointer;
     color: ${(props) => props.theme.colors.orange.dark};
     border-color: ${(props) => props.theme.colors.orange.dark};
   }
 
-  li[aria-current] button {
+  li button[aria-selected] {
     color: ${(props) => props.theme.colors.orange.darker};
     border-color: ${(props) => props.theme.colors.orange.darker};
   }

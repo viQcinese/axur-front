@@ -13,17 +13,17 @@ export function SearchList(props: SearchListProps) {
   return searches.length > 0 ? (
     <Container>
       {searches.map((search) => (
-        <li
-          key={search.id}
-          onClick={() =>
-            search.id === selectedSearchId
-              ? selectSearch(undefined)
-              : selectSearch(search)
-          }
-          data-id={search.id}
-          aria-current={search.id === selectedSearchId ? "true" : undefined}
-        >
-          <button>{search.keyword}</button>
+        <li key={search.id}>
+          <button
+            onClick={() =>
+              search.id === selectedSearchId
+                ? selectSearch(undefined)
+                : selectSearch(search)
+            }
+            aria-selected={search.id === selectedSearchId ? "true" : undefined}
+          >
+            {search.keyword}
+          </button>
         </li>
       ))}
     </Container>
