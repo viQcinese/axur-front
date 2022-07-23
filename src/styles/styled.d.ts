@@ -3,6 +3,6 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    colors: Record<string, string | Record<string, string>>;
+    colors: Record<string, Record<string, string>>;
   }
 }
