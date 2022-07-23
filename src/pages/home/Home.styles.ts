@@ -115,3 +115,24 @@ export const Spinner = styled(AiOutlineLoading3Quarters).attrs({
 })`
   animation: ${rotate} 0.6s linear infinite;
 `;
+
+export const CleanHistoryButton = styled.button`
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  outline: none;
+  border: none;
+  color: ${(props) => props.theme.colors.orange.dark};
+  height: 44px;
+  cursor: pointer;
+  background: white;
+  font-size: 1.6rem;
+
+  &:hover {
+    color: ${(props) => props.theme.colors.orange.darker};
+  }
+
+  &:active {
+    color: ${(props) => props.theme.colors.orange.darker};
+  }
+`;

@@ -22,6 +22,7 @@ import {
   ErrorMessage,
   Layout,
   SearchViewContainer,
+  CleanHistoryButton,
 } from "./Home.styles";
 
 export function HomePage() {
@@ -59,6 +60,9 @@ export function HomePage() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      {searches.length > 0 ? (
+        <CleanHistoryButton>Clean History</CleanHistoryButton>
+      ) : null}
       <Layout isSearchOpen={!!selectedSearch}>
         <SearchActionContainer>
           <LogoContainer>
