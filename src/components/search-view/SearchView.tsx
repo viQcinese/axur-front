@@ -11,7 +11,7 @@ import {
   LoadingContainer,
   Spinner,
   DataContainer,
-} from "./SearchDisplay.styles";
+} from "./SearchView.styles";
 
 type SearchDisplayProps = {
   search: SearchItem;

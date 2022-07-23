@@ -2,7 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ThemeProvider } from "styled-components";
 import { Logo } from "../../components/logo/Logo";
-import SearchDisplay from "../../components/search-display/SearchDisplay";
+import SearchDisplay from "../../components/search-view/SearchView";
+import { SearchList } from "../../components/search-list/SearchList";
 import usePost from "../../hooks/usePost";
 import { GlobalStyle } from "../../styles/global";
 import { theme } from "../../styles/theme";
@@ -19,9 +20,8 @@ import {
   Form,
   Spinner,
   ErrorMessage,
-  SearchList,
   Layout,
-  SearchDisplayContainer,
+  SearchViewContainer,
 } from "./Home.styles";
 
 export function HomePage() {
@@ -80,30 +80,15 @@ export function HomePage() {
               <ErrorMessage>{formState.errors.keyword?.message}</ErrorMessage>
             ) : null}
           </Form>
-          <SearchList>
-            {searches.map((search) => (
-              <li
-                key={search.id}
-                onClick={() =>
-                  search.id === selectedSearch?.id
-                    ? setSelectedSearch(undefined)
-                    : setSelectedSearch(search)
-                }
-                data-id={search.id}
-                aria-current={
-                  search.id === selectedSearch?.id ? "true" : undefined
-                }
-              >
-                {search.keyword}
-              </li>
-            ))}
-          </SearchList>
+          <SearchList
+            searches={searches}
+            selectedSearchId={selectedSearch?.id}
+            selectSearch={setSelectedSearch}
+          />
         </SearchActionContainer>
-        {selectedSearch ? (
-          <SearchDisplayContainer>
-            <SearchDisplay search={selectedSearch} />
-          </SearchDisplayContainer>
-        ) : null}
+        <SearchViewContainer>
+          {selectedSearch ? <SearchDisplay search={selectedSearch} /> : null}
+        </SearchViewContainer>
       </Layout>
     </ThemeProvider>
   );
