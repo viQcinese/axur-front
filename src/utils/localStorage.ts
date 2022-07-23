@@ -9,6 +9,6 @@ export function getSearchItems() {
 
 export function addSearchItem(item: SearchItem) {
   const searchItems = getSearchItems();
-  searchItems.push(item);
+  searchItems.unshift(item);
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(searchItems));
 }

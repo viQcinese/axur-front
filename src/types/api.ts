@@ -9,5 +9,5 @@ export type PostSearchPayload = {
 export type GetSearch = {
   id: string;
   status: "active" | "done";
-  url: string[];
+  urls: string[];
 };

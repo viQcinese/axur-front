@@ -1,20 +1,52 @@
 import { AiOutlineLoading3Quarters, AiOutlineSearch } from "react-icons/ai";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
-export const Layout = styled.main`
+type LayoutProps = {
+  isSearchOpen: boolean;
+};
+
+export const Layout = styled.main<LayoutProps>`
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 64px;
+  row-gap: 24px;
+  padding: 8px;
+  margin: auto;
+  max-width: 500px;
+
+  @media only screen and (min-width: 1024px) {
+    ${(props) =>
+      props.isSearchOpen
+        ? css`
+            grid-template-columns: 1fr 1fr;
+            max-width: 1080px;
+          `
+        : css``}
+  }
+`;
+
+export const SearchActionContainer = styled.div`
   display: flex;
+  margin-top: 200px;
   flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: 500px;
-  padding: 8px;
-  margin: auto;
+`;
+
+export const SearchDisplayContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media only screen and (min-width: 1024px) {
+    margin-top: 200px;
+  }
 `;
 
 export const LogoContainer = styled.div`
   & > svg {
     width: 300px;
-    margin-top: 200px;
   }
 `;
 
@@ -38,16 +70,6 @@ export const Input = styled.input`
   &:read-only {
     color: #ccc;
     cursor: default;
-  }
-`;
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
   }
 `;
 
@@ -82,9 +104,6 @@ export const SubmitButton = styled.button`
     background: ${(props) => props.theme.colors.orange.main};
     opacity: 0.4;
     cursor: default;
-    svg {
-      animation: ${rotate} 0.6s linear infinite;
-    }
   }
 `;
 
@@ -95,8 +114,11 @@ export const ErrorMessage = styled.p`
 `;
 
 export const SearchList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
   padding-left: 0;
+
   width: 100%;
   max-width: 500px;
   align-items: left;
@@ -104,17 +126,42 @@ export const SearchList = styled.ul`
   margin-top: 32px;
 
   & li {
-    margin-top: 8px;
+    margin-top: 12px;
+    padding: 4px 12px;
+    border: 1px solid #bbb;
+    border-radius: 50px;
   }
 
-  & li a:hover {
+  & li:not(first-child) {
+    margin-right: 8px;
+  }
+
+  & li:hover {
     cursor: pointer;
     color: ${(props) => props.theme.colors.orange.dark};
+    border-color: ${(props) => props.theme.colors.orange.dark};
+  }
+
+  & li[aria-current] {
+    color: ${(props) => props.theme.colors.orange.darker};
+    border-color: ${(props) => props.theme.colors.orange.darker};
   }
 `;
 
 export const SearchIcon = styled(AiOutlineSearch).attrs({ size: "2.4rem" })``;
 
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
 export const Spinner = styled(AiOutlineLoading3Quarters).attrs({
   size: "2.4rem",
-})``;
+})`
+  animation: ${rotate} 0.6s linear infinite;
+`;
