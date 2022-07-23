@@ -19,10 +19,6 @@ export const HeadContainer = styled.div`
     font-size: 2.4rem;
     margin: 0;
   }
-
-  span {
-    margin-left: 16px;
-  }
 `;
 
 export const DataContainer = styled.div`

@@ -13,30 +13,30 @@ import {
   DataContainer,
 } from "./SearchView.styles";
 
-type SearchDisplayProps = {
+type SearchViewProps = {
   search: SearchItem;
 };
 
-export default function SearchDisplay(props: SearchDisplayProps) {
+export function SearchView(props: SearchViewProps) {
   const { keyword, id } = props.search;
 
   const { data, loading } = useGet<GetSearch>(`/crawl/${id}`);
+  const isEmpty = data?.urls.length === 0;
+  const hasData = !!data && data.urls.length > 0;
 
   return (
-    <Container>
+    <Container data-testid="search-view-container" aria-busy={loading}>
       <HeadContainer>
         <h2>{keyword}</h2>
-        <span>
-          {data?.status === "active" ? (
-            <Spinner size="2rem" color="#888" />
-          ) : null}
-        </span>
+        {data?.status === "active" ? (
+          <Spinner size="2rem" color="#888" data-testid="active-search" />
+        ) : null}
       </HeadContainer>
       {loading ? (
         <LoadingContainer>
           <Spinner />
         </LoadingContainer>
-      ) : data?.urls.length ? (
+      ) : hasData ? (
         <DataContainer>
           <ul>
             {data.urls.map((url) => (
@@ -48,12 +48,12 @@ export default function SearchDisplay(props: SearchDisplayProps) {
             ))}
           </ul>
         </DataContainer>
-      ) : (
+      ) : isEmpty ? (
         <EmptyContainer>
           <EmptyIcon />
           <span>No results were found with this keyword</span>
         </EmptyContainer>
-      )}
+      ) : null}
     </Container>
   );
 }

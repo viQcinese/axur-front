@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ThemeProvider } from "styled-components";
 import { Logo } from "../../components/logo/Logo";
-import SearchDisplay from "../../components/search-view/SearchView";
+import { SearchView } from "../../components/search-view/SearchView";
 import { SearchList } from "../../components/search-list/SearchList";
 import usePost from "../../hooks/usePost";
 import { GlobalStyle } from "../../styles/global";
@@ -97,7 +97,7 @@ export function HomePage() {
           />
         </SearchActionContainer>
         <SearchViewContainer>
-          {selectedSearch ? <SearchDisplay search={selectedSearch} /> : null}
+          {selectedSearch ? <SearchView search={selectedSearch} /> : null}
         </SearchViewContainer>
       </Layout>
     </ThemeProvider>
