@@ -45,13 +45,7 @@ const rotate = keyframes`
   }
 `;
 
-type SubmitButtonProps = {
-  loading?: boolean;
-};
-
-export const SubmitButton = styled.button.attrs<SubmitButtonProps>((props) => ({
-  "data-loading": props.loading ? "" : undefined,
-}))<SubmitButtonProps>`
+export const SubmitButton = styled.button`
   position: absolute;
   right: 0;
   padding: 0 12px;
@@ -75,7 +69,7 @@ export const SubmitButton = styled.button.attrs<SubmitButtonProps>((props) => ({
   &:disabled {
     background: ${(props) => props.theme.colors.orange.main};
     opacity: 0.4;
-    cursor: not-allowed;
+    cursor: default;
   }
 
   &[data-loading] {
