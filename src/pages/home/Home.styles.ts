@@ -1,28 +1,14 @@
 import { AiOutlineLoading3Quarters, AiOutlineSearch } from "react-icons/ai";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 type LayoutProps = {
   isSearchOpen: boolean;
 };
 
 export const Layout = styled.main<LayoutProps>`
-  display: grid;
-  grid-template-columns: 1fr;
-  column-gap: 64px;
-  row-gap: 24px;
   padding: 8px;
   margin: auto;
   max-width: 500px;
-
-  @media only screen and (min-width: 1024px) {
-    ${(props) =>
-      props.isSearchOpen
-        ? css`
-            grid-template-columns: 1fr 1fr;
-            max-width: 1080px;
-          `
-        : css``}
-  }
 `;
 
 export const SearchActionContainer = styled.div`
@@ -38,10 +24,7 @@ export const SearchDisplayContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  @media only screen and (min-width: 1024px) {
-    margin-top: 200px;
-  }
+  margin-top: 40px;
 `;
 
 export const LogoContainer = styled.div`
@@ -111,6 +94,8 @@ export const ErrorMessage = styled.p`
   color: ${(props) => props.theme.colors.red.main};
   padding-left: 12px;
   font-size: 1.4rem;
+  margin: 0;
+  margin-top: 16px;
 `;
 
 export const SearchList = styled.ul`
@@ -123,7 +108,8 @@ export const SearchList = styled.ul`
   max-width: 500px;
   align-items: left;
   text-align: left;
-  margin-top: 32px;
+  margin: 0;
+  margin-top: 16px;
 
   & li {
     margin-top: 12px;

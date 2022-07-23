@@ -54,6 +54,8 @@ export function HomePage() {
     }
   }
 
+  const validationError = formState.errors.keyword?.message;
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -74,7 +76,9 @@ export function HomePage() {
             >
               {loading ? <Spinner /> : <SearchIcon />}
             </SubmitButton>
-            <ErrorMessage>{formState.errors.keyword?.message}</ErrorMessage>
+            {validationError ? (
+              <ErrorMessage>{formState.errors.keyword?.message}</ErrorMessage>
+            ) : null}
           </Form>
           <SearchList>
             {searches.map((search) => (

@@ -30,12 +30,6 @@ export const DataContainer = styled.div`
     list-style: none;
     margin: 0;
     padding: 0 16px 16px;
-
-    @media only screen and (min-width: 1024px) {
-      max-height: 400px;
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
   }
 
   li:not(:first-child) {

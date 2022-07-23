@@ -40,7 +40,11 @@ export default function SearchDisplay(props: SearchDisplayProps) {
         <DataContainer>
           <ul>
             {data.urls.map((url) => (
-              <li key={url}>{url.replace(CRAWLER_URL, "")}</li>
+              <li key={url}>
+                <a href={url} target="_blank">
+                  {url.replace(CRAWLER_URL, "")}
+                </a>
+              </li>
             ))}
           </ul>
         </DataContainer>
