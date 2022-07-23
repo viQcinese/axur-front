@@ -82,6 +82,12 @@ export const SubmitButton = styled.button`
   }
 `;
 
+export const ErrorMessage = styled.p`
+  color: ${(props) => props.theme.colors.red.main};
+  padding-left: 12px;
+  font-size: 1.4rem;
+`;
+
 export const SearchIcon = styled(AiOutlineSearch).attrs({ size: "2.4rem" })``;
 
 export const Spinner = styled(AiOutlineLoading3Quarters).attrs({

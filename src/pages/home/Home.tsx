@@ -2,8 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ThemeProvider } from "styled-components";
 import { Logo } from "../../components/logo/Logo";
+import usePost from "../../hooks/usePost";
 import { GlobalStyle } from "../../styles/global";
 import { theme } from "../../styles/theme";
+import { validateSearch } from "../../utils/validate";
 import {
   Layout,
   LogoContainer,
@@ -12,18 +14,22 @@ import {
   SearchIcon,
   InputGroup,
   Spinner,
+  ErrorMessage,
 } from "./Home.styles";
 
 type FormData = {
-  search: string;
+  keyword: string;
 };
 
 export function HomePage() {
-  const { register, handleSubmit } = useForm<FormData>();
-  const loading = true;
+  const { register, handleSubmit, formState } = useForm<FormData>();
+  const [dispatchSearch, { loading }] = usePost("/crawl", {
+    onCompleted: (data) => console.log(data),
+    onError: (error) => console.log(error),
+  });
 
   function onSubmit(formData: FormData) {
-    console.log(formData);
+    dispatchSearch(formData);
   }
 
   return (
@@ -34,7 +40,7 @@ export function HomePage() {
           <LogoContainer>
             <Logo />
             <InputGroup>
-              <Input {...register("search")} />
+              <Input {...register("keyword", { validate: validateSearch })} />
               <SubmitButton
                 type="submit"
                 data-loading={loading ? "" : undefined}
@@ -42,6 +48,7 @@ export function HomePage() {
               >
                 {loading ? <Spinner /> : <SearchIcon />}
               </SubmitButton>
+              <ErrorMessage>{formState.errors.keyword?.message}</ErrorMessage>
             </InputGroup>
           </LogoContainer>
         </form>

@@ -12,5 +12,8 @@ export const theme: DefaultTheme = {
     black: {
       main: "#222",
     },
+    red: {
+      main: "#e51a49",
+    },
   },
 };
