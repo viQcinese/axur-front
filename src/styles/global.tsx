@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  body, input {
+  body, input, button {
     font-size: 1.6rem;
     color: ${(props) => props.theme.colors.black.main}
   }

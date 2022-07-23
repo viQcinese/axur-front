@@ -10,7 +10,7 @@ type SearchListProps = {
 
 export function SearchList(props: SearchListProps) {
   const { searches, selectedSearchId, selectSearch } = props;
-  return (
+  return searches.length > 0 ? (
     <Container>
       {searches.map((search) => (
         <li
@@ -23,9 +23,9 @@ export function SearchList(props: SearchListProps) {
           data-id={search.id}
           aria-current={search.id === selectedSearchId ? "true" : undefined}
         >
-          {search.keyword}
+          <button>{search.keyword}</button>
         </li>
       ))}
     </Container>
-  );
+  ) : null;
 }
