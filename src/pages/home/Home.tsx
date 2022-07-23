@@ -57,6 +57,7 @@ export function HomePage() {
 
   function cleanHistory() {
     setSearches([]);
+    setSelectedSearch(undefined);
   }
 
   const validationError = formState.errors.keyword?.message;
