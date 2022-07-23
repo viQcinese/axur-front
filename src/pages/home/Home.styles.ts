@@ -2,25 +2,26 @@ import { AiOutlineLoading3Quarters, AiOutlineSearch } from "react-icons/ai";
 import styled, { keyframes } from "styled-components";
 
 export const Layout = styled.main`
-  margin: 8px;
-`;
-
-export const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 8px;
+  margin: auto;
+`;
 
+export const LogoContainer = styled.div`
   & > svg {
     width: 300px;
     margin-top: 200px;
   }
 `;
 
-export const InputGroup = styled.div`
+export const Form = styled.form`
   position: relative;
   margin-top: 64px;
   width: 100%;
-  max-width: 500px;
 `;
 
 export const Input = styled.input`
@@ -33,6 +34,11 @@ export const Input = styled.input`
   padding-right: 64px;
   border-radius: 16px;
   border: 1px solid #bbb;
+
+  &:read-only {
+    color: #ccc;
+    cursor: default;
+  }
 `;
 
 const rotate = keyframes`
@@ -86,6 +92,25 @@ export const ErrorMessage = styled.p`
   color: ${(props) => props.theme.colors.red.main};
   padding-left: 12px;
   font-size: 1.4rem;
+`;
+
+export const SearchList = styled.ul`
+  list-style: none;
+  padding-left: 0;
+  width: 100%;
+  max-width: 500px;
+  align-items: left;
+  text-align: left;
+  margin-top: 32px;
+
+  & li {
+    margin-top: 8px;
+  }
+
+  & li a:hover {
+    cursor: pointer;
+    color: ${(props) => props.theme.colors.orange.dark};
+  }
 `;
 
 export const SearchIcon = styled(AiOutlineSearch).attrs({ size: "2.4rem" })``;

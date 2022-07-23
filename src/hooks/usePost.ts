@@ -13,17 +13,17 @@ type PostData = {
   error?: unknown;
 };
 
-type PostTupple<TData> = [(data: TData) => void, PostData];
+type PostTupple<TPayload> = [(data: TPayload) => void, PostData];
 
-export default function usePost<TData>(
+export default function usePost<TData, TPayload>(
   path: string,
   config?: PostDataConfig<TData>
-): PostTupple<TData> {
+): PostTupple<TPayload> {
   const [data, setData] = React.useState<AxiosResponse>();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<unknown>();
 
-  async function postData(data: TData) {
+  async function postData(data: TPayload) {
     setLoading(true);
     setError(undefined);
 
@@ -38,8 +38,9 @@ export default function usePost<TData>(
       if (config?.onError) {
         config.onError(error);
       }
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   return [postData, { data, loading, error }];

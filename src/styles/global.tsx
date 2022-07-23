@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body, input {
     font-size: 1.6rem;
+    color: ${(props) => props.theme.colors.black.main}
   }
 
   *, *::before, &::after {
