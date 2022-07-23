@@ -3,10 +3,14 @@ import { DefaultTheme } from "styled-components";
 export const theme: DefaultTheme = {
   colors: {
     orange: {
-      "500": "#FF5824",
+      lighter: "#ff9a7b",
+      light: "#ff794f",
+      main: "#FF5824",
+      dark: "#e54f20",
+      darker: "#cc461c",
     },
     black: {
-      "500": "#222222",
+      main: "#222",
     },
   },
 };
